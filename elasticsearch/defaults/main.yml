@@ -1,0 +1,3 @@
+---
+elasticsearch_network_host: 0.0.0.0
+elasticsearch_http_port: 9200

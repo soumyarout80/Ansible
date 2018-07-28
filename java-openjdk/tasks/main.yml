@@ -14,10 +14,10 @@
   when: java_packages is not defined
 
 # Setup/install tasks.
-- include_tasks: setup-RedHat.yml
+- include_tasks: Install-Redhat.yml
   when: ansible_os_family == 'RedHat'
 
-- include_tasks: setup-Debian.yml
+- include_tasks: Install-Ubuntu.yml
   when: ansible_os_family == 'Debian'
 
 # Environment setup.

@@ -1,0 +1,13 @@
+---
+- include_tasks: Install-Redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: Install-Ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Start Kibana.
+  service: name=kibana state=started enabled=yes
+
+  # Start Kibana service
+- name: start myservice
+  systemd: state=started name=kibana daemon_reload=yes

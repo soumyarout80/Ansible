@@ -1,0 +1,22 @@
+# Setting http and https proxy in all servers
+---
+- hosts: all
+  become: yes
+  tasks:
+    - set_fact:
+        env_var: "{{ lookup('ini', 'ACTIVE_ENV section=COMMON file=environment.ini') }}"
+
+    - set_fact:
+        https_proxy_var: "{{ lookup('ini', 'HTTPS_PROXY section={{ env_var }} file=environment.ini') }}"
+
+    - set_fact:
+        http_proxy_var: "{{ lookup('ini', 'HTTP_PROXY section={{ env_var }} file=environment.ini') }}"
+
+    - name: Add http and https proxy to environment file.
+      lineinfile:
+        dest: /etc/environment
+        line: '{{ item }}'
+      with_items:
+        - https_proxy={{ https_proxy_var }}
+        - http_proxy={{ http_proxy_var }}
+      when: https_proxy_var != '""'  and http_proxy_var != '""'

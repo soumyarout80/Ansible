@@ -1,9 +1,9 @@
 [masters]
-master ansible_host=10.10.10.10
+master ansible_host=10.10.10.10  ansible_user=root
 
 [node]
-worker1 ansible_host=10.10.10.11
-worker2 ansible_host=10.10.10.12
+worker1 ansible_host=10.10.10.11  ansible_user=root
+worker2 ansible_host=10.10.10.12  ansible_user=root
 
 [local]
-localhost ansible_host=127.0.0.1   ansible_connection=local
+localhost ansible_host=127.0.0.1   ansible_connection=local ansible_user=root
